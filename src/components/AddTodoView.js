@@ -30,12 +30,12 @@ const AddTodoView = ({ onAddItem }) => {
         <form noValidate>
             <ListRowStyle>
                 <ListColumnStyle>
-                    <label for="title">Title:</label>
-                    <InputText type="text" name="title" id="title" value={title} onChange={(e) => setTitle(e.target.value)} />
+                    <label for="title"><b>Title:</b></label>
+                    <InputText type="text" name="title" id="title" value={title} placeholder="title" onChange={(e) => setTitle(e.target.value)} />
                 </ListColumnStyle>
                 <ListColumnStyle>
-                    <label for="details">Details:</label>
-                    <InputText type="text" name="details" id="details" value={taskDetail} onChange={(e) => setTaskDetail(e.target.value)} />
+                    <label for="details"><b>Details:</b></label>
+                    <InputText type="text" name="details" id="details" value={taskDetail} placeholder="details" onChange={(e) => setTaskDetail(e.target.value)} />
                 </ListColumnStyle>
                 <ListColumnStyle alignSelf="end">
                     <CustomButton primary type="button" onClick={onAdd}> Add Item </CustomButton>
