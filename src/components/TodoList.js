@@ -17,7 +17,7 @@ const TodoList = ({filterType, filterBy, completeCallback, deleteItem}) => {
                 <ListColumnStyle textLineThrough={item.completed}>{item.taskDetail}</ListColumnStyle>
                 <ListColumnStyle>
                     {!item.completed && <CustomButton onClick={() => completeCallback(item)}>
-                        Complete
+                        Mark As Completed
                     </CustomButton>}
                     <CustomButton primary={+true} onClick={() => deleteItem(item)}>
                         Delete

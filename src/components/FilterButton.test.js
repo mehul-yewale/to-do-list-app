@@ -1,9 +1,10 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import FilterButton from './FilterButton';
 
 test('renders FilterButton component', () => {
-  render(<FilterButton disabled onFilter={jest.fn()}> ALL </FilterButton>);
+  const mockOnFilter = jest.fn();
+  render(<FilterButton disabled onFilter={mockOnFilter}> ALL </FilterButton>);
   const buttonElement = screen.getByText(/ALL/i);
-  buttonElement.click();
+  fireEvent.click(buttonElement);
   expect(buttonElement).toBeInTheDocument();
 });
