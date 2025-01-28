@@ -1,6 +1,6 @@
 import React from 'react';
 import FilterButton from './FilterButton';
-import styled from 'styled-components';
+import FilterSectionStyle from  '../styled-components/FilterSectionStyle';
 
 const FilterSection = ({filterType, onFilter}) =>  {
     return <FilterSectionStyle className="filter-list">
@@ -9,9 +9,5 @@ const FilterSection = ({filterType, onFilter}) =>  {
       <FilterButton disabled={filterType === 'COMPLETED'} onFilter={() => onFilter('COMPLETED')}> Completed </FilterButton>
     </FilterSectionStyle>;
 };
-
-const FilterSectionStyle = styled.section`
-  margin-top: 1em;
-`;
 
 export default FilterSection;

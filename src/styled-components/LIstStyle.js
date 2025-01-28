@@ -10,17 +10,22 @@ const ListRowStyle = styled.div`
 const ListColumnStyle = styled.div`
    flex: 1;
    margin: 0.65em;
-   text-decoration: ${props => props.textLineThrough ? 'line-through': 'none'};
-   align-self: ${props => props.alignSelf ? props.alignSelf : 'auto'} 
+   text-decoration: ${props => props.textLineThrough ? 'line-through' : 'none'};
+   align-self: ${props => props.alignself ? props.alignself : 'auto'} 
 `;
 
 const ListHeaderTextBold = styled.span`
   font-weight: 700;
   font-size: 1.2em;
-`
+`;
+
+const ListSectionStyle = styled.section`
+   padding-top: 20px;
+`;
 
 export {
    ListRowStyle,
    ListColumnStyle,
-   ListHeaderTextBold
+   ListHeaderTextBold,
+   ListSectionStyle
 };

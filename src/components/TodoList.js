@@ -1,11 +1,11 @@
 import React from 'react';
-import { ListColumnStyle, ListRowStyle, ListHeaderTextBold } from '../styled-components/LIstStyle';
+import { ListColumnStyle, ListRowStyle, ListHeaderTextBold, ListSectionStyle } from '../styled-components/LIstStyle';
 import CustomButton from '../styled-components/CustomButtonStyle';
-import styled from 'styled-components';
-function TodoList(props) {
-    const listItems = props.filterBy(props.filterType);
-    return <ListSection className='list-section'> 
-        <div> Number of {props.filterType} items : {listItems.length}</div>
+
+const TodoList = ({filterType, filterBy, completeCallback, deleteItem}) => {
+    const listItems = filterBy(filterType);
+    return <ListSectionStyle className='list-section'> 
+        <div> Number of {filterType} items : {listItems.length} </div>
         <ListRowStyle>
             <ListColumnStyle><ListHeaderTextBold>Title</ListHeaderTextBold></ListColumnStyle>
             <ListColumnStyle><ListHeaderTextBold>Details</ListHeaderTextBold></ListColumnStyle>
@@ -16,20 +16,16 @@ function TodoList(props) {
                 <ListColumnStyle textLineThrough={item.completed}>{item.title}</ListColumnStyle>
                 <ListColumnStyle textLineThrough={item.completed}>{item.taskDetail}</ListColumnStyle>
                 <ListColumnStyle>
-                    {!item.completed && <CustomButton onClick={() => props.completeCallback(item)}>
+                    {!item.completed && <CustomButton onClick={() => completeCallback(item)}>
                         Complete
                     </CustomButton>}
-                    <CustomButton primary onClick={() => props.deleteItem(item)}>
+                    <CustomButton primary={+true} onClick={() => deleteItem(item)}>
                         Delete
                     </CustomButton>
                 </ListColumnStyle>
             </ListRowStyle>
         )}
-    </ListSection>;
+    </ListSectionStyle>;
 };
-
-const ListSection = styled.section`
-padding-top: 20px;
-`;
 
 export default TodoList;

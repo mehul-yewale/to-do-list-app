@@ -8,31 +8,30 @@ const todoListReducer = (state, action) => {
     switch (action.type) {
       case 'ADD_ITEM' : return [...state, action.item];
       case 'DELETE_ITEM' : return state.filter(item => item.id !== action.item.id);
-      case 'COMPLETED_ITEM' : return state.map(item =>
-        (item.id === action.item.id)
-          ? {...item, completed: true}
-          : item )
+      case 'COMPLETED_ITEM' : return state.map(item => (item.id === action.item.id) ? {...item, completed: true} : item);
       default: return state;
-    }  
+    };
 };
 
-function App() {
+const App = () => {
   const [listState, dispatchListItem] = useReducer(todoListReducer, []);
   const [selectedFilter, setSelectedFilter] = useState('ALL');
  
   const addItem = useCallback((item) => {
-    const newItem = {title: item.title, taskDetail: item.details,  completed: false,
-       id: listState.length === 0 ? 1 : listState[listState.length -1].id + 1};
-    console.log("addItem----", newItem);
-
+    const newItem = {
+      title: item.title,
+      taskDetail: item.details,
+      completed: false,
+      id: listState.length === 0 ? 1 : listState[listState.length -1].id + 1
+    };
     item && dispatchListItem({type: 'ADD_ITEM', item: newItem});
   }, [listState]);
 
   const filteredData = useCallback(() => {
     switch (selectedFilter) {
       case 'ALL' : return listState;
-      case 'ACTIVE' : return listState.filter(item => item.completed === false);
-      case 'COMPLETED' : return listState.filter(item => item.completed === true);
+      case 'ACTIVE' : return listState.filter(item => !item.completed);
+      case 'COMPLETED' : return listState.filter(item => item.completed);
       default: return listState;
     }
   }, [selectedFilter, listState]);
@@ -40,8 +39,7 @@ function App() {
   const completeItemChange = useCallback((itemData) => {
     if (!itemData.completed) {
       dispatchListItem({type: 'COMPLETED_ITEM', item: itemData});
-    } 
-    console.log("completion" , itemData);
+    }
   }, [])
 
   return (
