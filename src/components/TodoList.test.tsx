@@ -1,11 +1,12 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import TodoList from './TodoList';
-const mockOnFilter = () => [{ title: 'abc', taskDetail: '', completed: false, id: 1 }];
+import { TodoItem } from '../types/common';
+const mockOnFilter:TodoItem[] = [{ title: 'abc', taskDetail: '', completed: false, id: 1 }];
 const mockJestFn = jest.fn();
 
 describe('TodoList', () => {
   test('renders TodoList and check Mark As Completed button click', () => {
-    render(<TodoList filterType="COMPLETED" filterBy={mockOnFilter} completeCallback={mockJestFn} deleteItem={mockJestFn} />);
+    render(<TodoList filterType="COMPLETED" listItems={mockOnFilter} completeCallback={mockJestFn} deleteItem={mockJestFn} />);
     const textElement = screen.getByText(/Number of COMPLETED items : 1/i);
     expect(textElement).toBeInTheDocument();
 
@@ -15,7 +16,7 @@ describe('TodoList', () => {
   });
 
   test('renders TodoList and check delete button click', () => {
-    render(<TodoList filterType="ACTIVE" filterBy={mockOnFilter} completeCallback={mockJestFn} deleteItem={mockJestFn} />);
+    render(<TodoList filterType="ACTIVE" listItems={mockOnFilter} completeCallback={mockJestFn} deleteItem={mockJestFn} />);
     const textElement = screen.getByText(/Number of ACTIVE items : 1/i);
     expect(textElement).toBeInTheDocument();
 
@@ -25,7 +26,7 @@ describe('TodoList', () => {
   });
 
   test('renders TodoList All item', () => {
-    render(<TodoList filterType="ALL" filterBy={mockOnFilter} completeCallback={mockJestFn} deleteItem={mockJestFn} />);
+    render(<TodoList filterType="ALL" listItems={mockOnFilter} completeCallback={mockJestFn} deleteItem={mockJestFn} />);
     const textElement = screen.getByText(/Number of ALL items : 1/i);
     expect(textElement).toBeInTheDocument();
   });

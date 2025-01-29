@@ -4,15 +4,16 @@ import FilterSectionStyle from  '../styled-components/FilterSectionStyle';
 import { FilterType } from '../types/common';
 
 interface FilterSectionProps {
-    filterType: string;
+    filterType: FilterType;
     onFilter: (filterType: FilterType) => void;
+    filterValueList: FilterType[];
 };
 
-const FilterSection = ({filterType, onFilter}: FilterSectionProps) =>  {
+const FilterSection = ({filterType, onFilter, filterValueList}: FilterSectionProps) =>  {
     return <FilterSectionStyle className="filter-list">
-      Show : <FilterButton disabled={filterType === 'ALL'} onFilter={()=> onFilter('ALL')}> All </FilterButton>
-      <FilterButton disabled={filterType === 'ACTIVE'} onFilter={() => onFilter('ACTIVE')}> Active </FilterButton> 
-      <FilterButton disabled={filterType === 'COMPLETED'} onFilter={() => onFilter('COMPLETED')}> Completed </FilterButton>
+       Show : {filterValueList.map((filterValue: FilterType) => 
+          <FilterButton key={filterValue} disabled={filterType === filterValue} onFilter={() => onFilter(filterValue)}> {filterValue} </FilterButton>)
+       }
     </FilterSectionStyle>;
 };
 

@@ -7,3 +7,9 @@ export interface TodoItem {
 
 export type FilterType = 'ALL' | 'ACTIVE' | 'COMPLETED';
 
+export enum FilterTypeEnum {
+    ALL = 'ALL',
+    ACTIVE = 'ACTIVE',
+    COMPLETED = 'COMPLETED'
+};
+
