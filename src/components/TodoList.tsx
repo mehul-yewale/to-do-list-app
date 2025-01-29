@@ -2,7 +2,14 @@ import React from 'react';
 import { ListColumnStyle, ListRowStyle, ListHeaderTextBold, ListSectionStyle } from '../styled-components/LIstStyle';
 import CustomButton from '../styled-components/CustomButtonStyle';
 
-const TodoList = ({filterType, filterBy, completeCallback, deleteItem}) => {
+interface TodoListProps {
+    filterType: string;
+    filterBy: (filterType: string) => any[];
+    completeCallback: (item: any) => void;
+    deleteItem: (item: any) => void;
+};
+
+const TodoList = ({filterType, filterBy, completeCallback, deleteItem}: TodoListProps) => {
     const listItems = filterBy(filterType);
     return <ListSectionStyle className='list-section'> 
         <div> Number of {filterType} items : {listItems.length} </div>

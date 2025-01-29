@@ -83,18 +83,20 @@ describe('App', () => {
 
     const addIButtonElement = screen.getByText(/Add Item/i);
     fireEvent.click(addIButtonElement);
+
     const textElement = screen.getByText(/Number of ALL items : 1/i);
     expect(textElement).toBeInTheDocument();
+
     const completeButton = screen.getByText(/Mark As Completed/i);
     expect(completeButton).toBeInTheDocument();
 
+    fireEvent.click(completeButton);
     const completedButton = screen.getByText(/^COMPLETED$/i);
     fireEvent.click(completedButton);
 
-    const textElement1 = screen.getByText(/Number of COMPLETED items : 0/i);
-    expect(textElement1).toBeInTheDocument();
+    const textElement2 = screen.getByText(/Number of COMPLETED items : 1/i);
+    expect(textElement2).toBeInTheDocument();
     
-    fireEvent.click(completeButton);
     expect(completeButton).not.toBeInTheDocument();
   });
 })

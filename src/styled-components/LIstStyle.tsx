@@ -7,7 +7,7 @@ const ListRowStyle = styled.div`
    justify-content: space-between;
    align-items: center;
 `;
-const ListColumnStyle = styled.div`
+const ListColumnStyle = styled.div<{ textLineThrough?: boolean, alignself?: string }>`
    flex: 1;
    margin: 0.65em;
    text-decoration: ${props => props.textLineThrough ? 'line-through' : 'none'};

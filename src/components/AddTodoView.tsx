@@ -1,14 +1,18 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import ErrorText from "../styled-components/ErrorTextStyle";
-import CustomButton from "../styled-components/CustomButtonStyle";
+import CustomButtonStyle from "../styled-components/CustomButtonStyle";
 import { ListRowStyle, ListColumnStyle } from "../styled-components/LIstStyle";
-import InputText from "../styled-components/CustomInputText";
 import LabelBoldStyle from "../styled-components/LabelBoldStyle";
+import InputTextStyle from "../styled-components/InputTextStyle";
 
-const AddTodoView = ({ onAddItem }) => {
-    const [title, setTitle] = useState('');
-    const [taskDetail, setTaskDetail] = useState('');
-    const [error, setError] = useState(null);
+interface AddTodoViewProps {
+    onAddItem: (item: any) => void;
+};
+
+const AddTodoView = ({ onAddItem }: AddTodoViewProps) => {
+    const [title, setTitle] = useState<string>('');
+    const [taskDetail, setTaskDetail] = useState<string>('');
+    const [error, setError] = useState<string | null>(null);
 
     const onAdd = () => {
         // validation checks 
@@ -32,14 +36,14 @@ const AddTodoView = ({ onAddItem }) => {
             <ListRowStyle>
                 <ListColumnStyle>
                     <LabelBoldStyle htmlFor="title">Title:</LabelBoldStyle>
-                    <InputText type="text" name="title" id="title" value={title} placeholder="Enter title here" onChange={(e) => setTitle(e.target.value)} />
+                    <InputTextStyle type="text" name="title" id="title" value={title} placeholder="Enter title here" onChange={(e: ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)} />
                 </ListColumnStyle>
                 <ListColumnStyle>
                     <LabelBoldStyle htmlFor="details">Details:</LabelBoldStyle>
-                    <InputText type="text" name="details" id="details" value={taskDetail} placeholder="Enter task details here" onChange={(e) => setTaskDetail(e.target.value)} />
+                    <InputTextStyle type="text" name="details" id="details" value={taskDetail} placeholder="Enter task details here" onChange={(e: ChangeEvent<HTMLInputElement>) => setTaskDetail(e.target.value)} />
                 </ListColumnStyle>
                 <ListColumnStyle alignself="end">
-                    <CustomButton primary={+true} type="button" onClick={onAdd}> Add Item </CustomButton>
+                    <CustomButtonStyle primary={+true} type="button" onClick={onAdd}> Add Item </CustomButtonStyle>
                 </ListColumnStyle>
             </ListRowStyle>
             {error && <ErrorText>{error}</ErrorText>}

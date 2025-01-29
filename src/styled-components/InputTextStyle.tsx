@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-const InputText = styled.input`
+const InputTextStyle = styled.input`
     height: 28px;
     width: 100%;
 `;
 
-export default InputText;
+export default InputTextStyle;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
-const ErrorText = styled.div`
+const ErrorTextStyle = styled.div`
   color: red;
   font-size: 1em;
 `;
 
-export default ErrorText;
+export default ErrorTextStyle;

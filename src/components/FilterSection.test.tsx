@@ -1,5 +1,5 @@
-import { fireEvent, render, screen } from '@testing-library/react';
-import FilterSection from './FilterView';
+import { render, screen } from '@testing-library/react';
+import FilterSection from './FilterSection';
 const onFilterFnMock = jest.fn(() => { });
 
 describe('FilterSection', () => {

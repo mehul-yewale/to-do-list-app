@@ -26,11 +26,11 @@ describe('AddTodoView', () => {
     const errorTextElement = screen.getByText('Both fields are required!');
     expect(errorTextElement).toBeInTheDocument();
 
-    const titleInput = screen.getAllByPlaceholderText('Enter title here');
+    const titleInput: HTMLInputElement[] = screen.getAllByPlaceholderText('Enter title here');
     fireEvent.change(titleInput[0], { target: { value: 'title' } });
     expect(titleInput[0].value).toBe('title');
 
-    const detailsInput = screen.getAllByPlaceholderText('Enter task details here');
+    const detailsInput: HTMLInputElement[] = screen.getAllByPlaceholderText('Enter task details here');
     fireEvent.change(detailsInput[0], { target: { value: 'details' } });
     expect(detailsInput[0].value).toBe('details');
     expect(errorTextElement).not.toBeInTheDocument();

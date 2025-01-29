@@ -1,5 +1,5 @@
 import styled from "styled-components";
-const CustomButton = styled.button`
+const CustomButtonStyle = styled.button<{ primary?: boolean | number, disabled?: boolean }>`
   background: ${props =>  props.disabled? 'orange' : props.primary ? "#BF4F74" : "white"};
   color: ${props => props.disabled? '#666666' : props.primary ? "white" : "#BF4F74"};
   font-size: 1em;
@@ -10,4 +10,4 @@ const CustomButton = styled.button`
   cursor: ${props => props.disabled ? 'not-allowed' : 'auto'}; 
 `;
 
-export default CustomButton;
+export default CustomButtonStyle;
