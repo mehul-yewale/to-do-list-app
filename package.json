@@ -39,6 +39,7 @@
       "src/**/*.{js,jsx,ts,tsx}",
       "!<rootDir>/node_modules/",
       "!<rootDir>/src/index.tsx",
+      "!<rootDir>/src/types/*",
       "!<rootDir>/src/serviceWorker.js",
       "!<rootDir>/src/reportWebVitals.js",
       "!<rootDir>/src/setupTests.js"

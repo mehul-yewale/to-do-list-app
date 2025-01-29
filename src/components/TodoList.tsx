@@ -1,16 +1,17 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import { ListColumnStyle, ListRowStyle, ListHeaderTextBold, ListSectionStyle } from '../styled-components/LIstStyle';
 import CustomButton from '../styled-components/CustomButtonStyle';
+import { TodoItem } from '../types/common';
 
 interface TodoListProps {
     filterType: string;
-    filterBy: (filterType: string) => any[];
+    filterBy: (filterType: string) => TodoItem[];
     completeCallback: (item: any) => void;
     deleteItem: (item: any) => void;
 };
 
 const TodoList = ({filterType, filterBy, completeCallback, deleteItem}: TodoListProps) => {
-    const listItems = filterBy(filterType);
+    const listItems = useMemo(() => filterBy(filterType), [filterType, filterBy]);
     return <ListSectionStyle className='list-section'> 
         <div> Number of {filterType} items : {listItems.length} </div>
         <ListRowStyle>

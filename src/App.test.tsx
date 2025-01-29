@@ -11,20 +11,20 @@ describe('App', () => {
   test('check Add Item function', () => {
     render(<App />);
     const addIButtonElement = screen.getByText(/Add Item/i);
-    const titleInput = screen.getAllByPlaceholderText('Enter title here');
-    const detailsInput = screen.getAllByPlaceholderText('Enter task details here');
+    const titleInput = screen.getByPlaceholderText('Enter title here');
+    const detailsInput = screen.getByPlaceholderText('Enter task details here');
     const textElement = screen.getByText(/Number of ALL items : 0/i);
     expect(textElement).toBeInTheDocument();
 
-    fireEvent.change(titleInput[0], { target: { value: 'title' } });
-    fireEvent.change(detailsInput[0], { target: { value: 'details' } });
+    fireEvent.change(titleInput, { target: { value: 'title' } });
+    fireEvent.change(detailsInput, { target: { value: 'details' } });
     fireEvent.click(addIButtonElement);
     const textElement1 = screen.getByText(/Number of ALL items : 1/i);
     expect(textElement1).toBeInTheDocument();
 
 
-    fireEvent.change(titleInput[0], { target: { value: 'title1' } });
-    fireEvent.change(detailsInput[0], { target: { value: 'details2' } });
+    fireEvent.change(titleInput, { target: { value: 'title1' } });
+    fireEvent.change(detailsInput, { target: { value: 'details2' } });
     fireEvent.click(addIButtonElement);
     const textElement2 = screen.getByText(/Number of ALL items : 2/i);
     expect(textElement2).toBeInTheDocument();
@@ -32,10 +32,10 @@ describe('App', () => {
 
   test('render App component with ACTIVE button click', () => {
     render(<App />);
-    const titleInput = screen.getAllByPlaceholderText('Enter title here');
-    fireEvent.change(titleInput[0], { target: { value: 'title' } });
-    const detailsInput = screen.getAllByPlaceholderText('Enter task details here');
-    fireEvent.change(detailsInput[0], { target: { value: 'details' } });
+    const titleInput = screen.getByPlaceholderText('Enter title here');
+    fireEvent.change(titleInput, { target: { value: 'title' } });
+    const detailsInput = screen.getByPlaceholderText('Enter task details here');
+    fireEvent.change(detailsInput, { target: { value: 'details' } });
 
     const textElement1 = screen.getByText(/Number of ALL items : 0/i);
     expect(textElement1).toBeInTheDocument();
@@ -51,12 +51,12 @@ describe('App', () => {
   });
 
 
-  test('render App component with Delete button click', () => {
+  test('render App component with Delete item button click', () => {
     render(<App />);
-    const titleInput = screen.getAllByPlaceholderText('Enter title here');
-    fireEvent.change(titleInput[0], { target: { value: 'title' } });
-    const detailsInput = screen.getAllByPlaceholderText('Enter task details here');
-    fireEvent.change(detailsInput[0], { target: { value: 'details' } });
+    const titleInput = screen.getByPlaceholderText('Enter title here');
+    fireEvent.change(titleInput, { target: { value: 'title' } });
+    const detailsInput = screen.getByPlaceholderText('Enter task details here');
+    fireEvent.change(detailsInput, { target: { value: 'details' } });
 
     const textElement1 = screen.getByText(/Number of ALL items : 0/i);
     expect(textElement1).toBeInTheDocument();
@@ -91,13 +91,13 @@ describe('App', () => {
     expect(completeButton).toBeInTheDocument();
 
     fireEvent.click(completeButton);
+    expect(completeButton).not.toBeInTheDocument();
+
     const completedButton = screen.getByText(/^COMPLETED$/i);
     fireEvent.click(completedButton);
 
     const textElement2 = screen.getByText(/Number of COMPLETED items : 1/i);
     expect(textElement2).toBeInTheDocument();
-    
-    expect(completeButton).not.toBeInTheDocument();
   });
 })
 

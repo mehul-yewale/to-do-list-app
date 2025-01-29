@@ -2,15 +2,8 @@ import React, {useState, useReducer, useCallback } from 'react';
 import TodoList from './components/TodoList';
 import FilterSection from './components/FilterSection';
 import AddTodoView from './components/AddTodoView';
-import { FilterType } from './types/common';
+import { FilterType, TodoItem } from './types/common';
 import './App.css';
-
-interface TodoItem {
-  title: string;
-  taskDetail: string;
-  completed: boolean;
-  id: number;
-};
 
 const todoListReducer = (state: TodoItem[], action: {type:string, item:TodoItem}) => {
     switch (action.type) {
@@ -35,7 +28,7 @@ const App = () => {
     item && dispatchListItem({type: 'ADD_ITEM', item: newItem});
   }, [listState]);
 
-  const filteredData = useCallback(() => {
+  const filteredData = useCallback((): TodoItem[] => {
     switch (selectedFilter) {
       case 'ALL' : return listState;
       case 'ACTIVE' : return listState.filter((item:TodoItem) => !item.completed);
